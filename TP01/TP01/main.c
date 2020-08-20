@@ -1,126 +1,67 @@
-/****************************************************************************
- * Copyright (C) 2020 by Programação de Hardware Engenharia de computação   *
- *                                                                          *
- * This file is part of Box.                                                *
- *                                                                          *
- *   Box is free software: you can redistribute it and/or modify it         *
- *   under the terms of the GNU Lesser General Public License as published  *
- *   by the Free Software Foundation, either version 3 of the License, or   *
- *   (at your option) any later version.                                    *
- *                                                                          *
- *   Box is distributed in the hope that it will be useful,                 *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of         *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
- *   GNU Lesser General Public License for more details.                    *
- *                                                                          *
- *   You should have received a copy of the GNU Lesser General Public       *
- *   License along with Box.  If not, see <http://www.gnu.org/licenses/>.   * 
- *   Teamplate based on Matteo Franchin´s code:                             *
- *   <http://fnch.users.sourceforge.net/doxygen_c.html>                     *
- ****************************************************************************/
-
-/**
- * @file TP01.h
- * @author Aluno
- * @date 13 Aug 2020
- * @brief TP01 da matéria Programação de Hardware do 6 ciclo de engenharia de computação.
+/*
+ * TP01.c
  *
- * Altere aqui a descrição completa do que o programa faz;
- * Doxygens tags are words preceeded by either a backslash @\
- * or by an at symbol @@.
- * @see http://inovfablab.unisanta.br
- * @see http://fabmanager.unisanta.br
- */
-
-#ifndef _TP01_
-#  define _TP01_
-
+ * Created: 19/08/2020 20:43:11
+ * Author : Robson Mello
+ */ 
+/************************************************************************/
+/*
+Desenvolva um código em C, resolvendo (com inline assembly) a equação ( 0x45 - 25 + 0b00110110  - 0x62) e faça um print do resultado (usando C). A resposta deverá ser implementado cabeçalho e descrição de cada comando usando Doxygen. A resposta deverá ser enviada pelo Github no repositório da matéria.
+                                                                     */
+/************************************************************************/
 #include <avr/io.h>
-
+#include <stdio.h>
 /**
- * @brief Este Tp é o primeiro TP da disciplica de Programãção de Hardware.
- *
- *  Desenvolva um código em C, resolvendo (com inline assembly) a equação ( 0x45 - 25 + 0b00110110  - 0x62) e faça um print do resultado (usando C). 
- *  Crie também uma função de Delay onde pode-se inserir o parâmetro de tempo,
- *  mas a resolução dentro da função em assembly. A resposta deverá ser implementado cabeçalho e descrição de cada comando usando Doxygen.
- *  A resposta deverá ser enviada pelo Github no repositório da matéria.
- */
-
-
-typedef struct BoxStruct_struct {
-	int a;    /**< Exemplo de explicação de uma struct #a. */
-	int b;    /**< Exemplo de explicação de uma struct#b. */
-	double c; /**< Exemplo de explicação de uma struct #c */
-} BoxStruct;
-
-//exemplo de documentação de uma função - Versão completa - Pode apagar ou usar a seu gosto
-
+* préprocessor soma(a,b,c,d).
+* realiza a soma das quatro variáveis (b-d+a-c).
+*/
+#define soma(a,b,c,d) (b-d+a-c)
+/** 
+* Variável global binario.
+* receberá o valor binário.
+*/
+int binario ;
 /**
- * @brief Example showing how to document a function with Doxygen.
- *
- * Description of what the function does. This part may refer to the parameters
- * of the function, like @p param1 or @p param2. A word of code can also be
- * inserted like @c this which is equivalent to <tt>this</tt> and can be useful
- * to say that the function returns a @c void or an @c int. If you want to have
- * more than one word in typewriter font, then just use @<tt@>.
- * We can also include text verbatim,
- * @verbatim like this@endverbatim
- * Sometimes it is also convenient to include an example of usage:
- * @code
- * BoxStruct *out = Box_The_Function_Name(param1, param2);
- * printf("something...\n");
- * @endcode
- * Or,
- * @code{.py}
- * pyval = python_func(arg1, arg2)
- * print pyval
- * @endcode
- * when the language is not the one used in the current source file (but
- * <b>be careful</b> as this may be supported only by recent versions
- * of Doxygen). By the way, <b>this is how you write bold text</b> or,
- * if it is just one word, then you can just do @b this.
- * @param param1 Description of the first parameter of the function.
- * @param param2 The second one, which follows @p param1.
- * @return Describe what the function returns.
- * @see Box_The_Second_Function
- * @see Box_The_Last_One
- * @see http://website/
- * @note Something to note.
- * @warning Warning.
- */
-BoxStruct Box_The_Function_Name(BoxStruct param1, BoxStruct param2 /*, ...*/);// pode deletar esta função é apenas exemplo
-
-//exemplo de documentação de uma função - Versão mais simples - Pode apagar ou usar a seu gosto
+* Variável global hexa1.
+* receberá o primeiro valor hexadecimal.
+*/
+int hexa1	;
 /**
- * @brief A simple stub function to show how links do work.
- *
- * Links are generated automatically for webpages (like http://www.google.co.uk)
- * and for structures, like BoxStruct_struct. For typedef-ed types use
- * #BoxStruct.
- * For functions, automatic links are generated when the parenthesis () follow
- * the name of the function, like Box_The_Function_Name().
- * Alternatively, you can use #Box_The_Function_Name.
- * @return @c NULL is always returned.
- */
-BoxStruct Box_The_Second_Function(void);// pode deletar esta função é apenas exemplo
-
-//exemplo de documentação de uma função - Versão resumida - Pode apagar ou usar a seu gosto
+* Variável global hexa2.
+* receberá o segundo valor hexadecimal.
+*/
+int hexa2	;
 /**
- * Brief can be omitted. If you configure Doxygen with
- * <tt>JAVADOC_AUTOBRIEF=YES</tt>, then the first Line of the comment is used
- * instead. In this function this would be as if
- * @verbatim @brief Brief can be omitted. @endverbatim
- * was used instead.
- */
-BoxStruct Box_The_Last_One(void); // pode deletar esta função é apenas exemplo
-
-
+* Variável global decimal.
+* receberá o valor decimal.
+*/
+int decimal ;
+/**
+* Variável global decimal.
+* receberá o valor da soma.
+*/
+int somaDosValores;
+/**
+* Função principal, que receberá os dados da função asm e jogará para as variaveis
+* @return (int) 0 para finalizar função
+*/
 int main(void)
 {
-    /* Seu programa aqui */
-    while (1) 
-    {
-    }
+	/**Função assembler, responsável por setar os valores nos registradores e passa-los para as variaveis*/
+	asm(
+		"ldi r20, 0b00110110\n"
+		"ldi r21, 0x45\n"
+		"ldi r22, 0x62\n"
+		"ldi r23, 25\n"
+		"sts (binario), r20\n"
+		"sts (hexa1), r21\n"
+		"sts (hexa2), r22\n"
+		"sts (decimal), r23\n"
+	);
+	/**Variável que recebe o preprocessor soma para somar as variáveis*/
+	somaDosValores = soma(binario,hexa1,hexa2,decimal);
+	/**Função printf, responsável por printar na tela uma ou mais variáveis. No caso, mostrando a variável somaDosValores*/
+	printf("%d", somaDosValores);
+	return 0;
 }
 
-#endif /* _TP01_ */
