@@ -3,27 +3,27 @@ TP01.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  000000da  2**0
+  0 .data         00000000  00800100  00800100  000000ec  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000086  00000000  00000000  00000054  2**1
+  1 .text         00000098  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      00000030  00000000  00000000  000000da  2**0
+  2 .comment      00000030  00000000  00000000  000000ec  2**0
                   CONTENTS, READONLY
-  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000010c  2**2
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000011c  2**2
                   CONTENTS, READONLY
-  4 .debug_aranges 00000020  00000000  00000000  0000014c  2**0
+  4 .debug_aranges 00000020  00000000  00000000  0000015c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000678  00000000  00000000  0000016c  2**0
+  5 .debug_info   00000677  00000000  00000000  0000017c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 000005eb  00000000  00000000  000007e4  2**0
+  6 .debug_abbrev 000005e8  00000000  00000000  000007f3  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   0000016d  00000000  00000000  00000dcf  2**0
+  7 .debug_line   00000179  00000000  00000000  00000ddb  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000024  00000000  00000000  00000f3c  2**2
+  8 .debug_frame  00000024  00000000  00000000  00000f54  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000353  00000000  00000000  00000f60  2**0
+  9 .debug_str    0000038f  00000000  00000000  00000f78  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000010  00000000  00000000  000012b3  2**0
+ 10 .debug_ranges 00000010  00000000  00000000  00001307  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -64,22 +64,37 @@ Disassembly of section .text:
   70:	de bf       	out	0x3e, r29	; 62
   72:	cd bf       	out	0x3d, r28	; 61
   74:	0e 94 40 00 	call	0x80	; 0x80 <main>
-  78:	0c 94 41 00 	jmp	0x82	; 0x82 <_exit>
+  78:	0c 94 4a 00 	jmp	0x94	; 0x94 <_exit>
 
 0000007c <__bad_interrupt>:
   7c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000080 <main>:
- */
 BoxStruct Box_The_Last_One(void); // pode deletar esta função é apenas exemplo
 
 
 int main(void)
 {
-  80:	ff cf       	rjmp	.-2      	; 0x80 <main>
+    __asm__("ldi r20,0x45 \n"
+  80:	45 e4       	ldi	r20, 0x45	; 69
+  82:	59 e1       	ldi	r21, 0x19	; 25
+  84:	45 0f       	add	r20, r21
+  86:	66 e3       	ldi	r22, 0x36	; 54
+  88:	46 1b       	sub	r20, r22
+  8a:	72 e6       	ldi	r23, 0x62	; 98
+  8c:	74 0f       	add	r23, r20
+			"ldi r23,0x62 \n"
+			"add r23,r20 \n"
+					
+			
+			);
+}
+  8e:	80 e0       	ldi	r24, 0x00	; 0
+  90:	90 e0       	ldi	r25, 0x00	; 0
+  92:	08 95       	ret
 
-00000082 <_exit>:
-  82:	f8 94       	cli
+00000094 <_exit>:
+  94:	f8 94       	cli
 
-00000084 <__stop_program>:
-  84:	ff cf       	rjmp	.-2      	; 0x84 <__stop_program>
+00000096 <__stop_program>:
+  96:	ff cf       	rjmp	.-2      	; 0x96 <__stop_program>
