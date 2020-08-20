@@ -8,6 +8,7 @@
 #ifndef _TP01_
 #define _TP01_
 #include "stdio.h"
+#include "avr/io.h"
 
 
 int main(void)
@@ -18,16 +19,16 @@ int main(void)
 	while (1)
 	{
 		asm(
-			"ldi %0, 0x25 \n"
-			"ldi %1, 25 \n"
-			"sub %0, %1"
-			"ldi %1, 0b00110110 \n"
-			"add %0, %1 \n"
-			"ldi %1, 0x62 \n"
+			"ldi r16, 0x25 \n"
+			"ldi r17, 25 \n"
+			"sub r16, r17"
+			"ldi r17, 0b00110110 \n"
+			"add r16, r17 \n"
+			"ldi r17, 0x62 \n"
 
 		);
 		asm(
-			"sub %0, %1 \n"
+			"sub r16, r17 \n"
 			: "=a"(result)
 		);
 		printf("%d", result);
