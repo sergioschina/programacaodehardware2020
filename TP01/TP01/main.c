@@ -115,12 +115,19 @@ BoxStruct Box_The_Second_Function(void);// pode deletar esta função é apenas exe
 BoxStruct Box_The_Last_One(void); // pode deletar esta função é apenas exemplo
 
 
-int main(void)
+int operacao(void)
 {
-    /* Seu programa aqui */
-    while (1) 
-    {
+    asm(
+    "ldi r16, 0x45\n"
+    "ldi r17, 25\n"
+    "ldi r20, 0b00110110\n"
+    "ldi r21, 0x62\n"
+    "sub r16, r17\n"
+    "sub r20, r21\n"
+    "add r16, r20\n");
     }
-}
 
-#endif /* _TP01_ */
+    int main(void)
+    {
+	    operacao();
+    }
