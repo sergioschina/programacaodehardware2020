@@ -1,13 +1,20 @@
 /*
- * TP01.c
+/**
+ * @file main.c
+ * @author Fabregas
+ * @date 19 Aug 2020
+ * @brief TP 01
  *
- * Created: 19/08/2020 19:07:52
- * Author : Fabricio
+ * Operação de soma e subtração em assembly
+ */
  */ 
 
 #include <avr/io.h>
-#include <stdio.h>
-int a,b,c,d;
+/**
+ * @brief Função que executa a equação: (0x45 - 25) + (0b00110110 - 0x62)
+ * @code funcao()
+ **/
+
 
 int main(void)
 {
@@ -21,8 +28,11 @@ int main(void)
 	"add r24,r26	\n"
 	"sub r24,27		\n"
 	
+	
 			
 );
+
+
 	
   
 }
